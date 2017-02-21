@@ -1,0 +1,200 @@
+
+// Original source: http://webdesignerwall.com/tutorials/level-css-skills-20-pro-css-tips
+
+// 1. CSS reset
+
+* {
+  box-sizing: border-box;  // optional if Step #2 is used
+  margin: 0;
+  padding: 0;
+}
+
+// 2. Inherit box-sizing
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// 3. Get Rid of Margin Hacks With Flexbox
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+
+  .item {
+    flex-basis: 23%;
+  }
+}
+
+// 4. Use :not() to Style Borders on Lists
+// Equivalent with `.nav li + li` or `.nav li:first-child ~ li`
+
+.horizontal-list .list-item:not(:last-child) {
+  border-right: 1px solid #666;
+}
+
+.vertical-list .list-item:not(:last-child) {
+  border-bottom: 1px solid #666;
+}
+
+// 5. Add line-height to body
+
+body {
+  line-height: 1.5;
+}
+
+// 6. Vertically-Center Anything
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// 7. Use SVG for Icons
+
+.logo {
+  background: url('logo.svg');
+}
+// Accessibility tip
+.no-svg .icon-only:after {
+  content: attr(aria-label);
+}
+
+// 8. Use the "Owl" Selector
+
+* + * {
+  margin-top: 1.5rem;  // ~30px
+}
+
+// 9. Consistent Vertical Rhythm
+
+.vertical-rhythm > * {
+  margin-bottom: 1.25rem;
+}
+
+// 10. Use `box-decoration-break` for Prettier Wrapped Text
+
+.pretty-wrapped-text {
+  display: inline-block;
+  box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+// 11. Equal-Width Table Cells
+
+.table-cell-equal {
+  table-layout: fixed;
+}
+
+// 12. Force Empty Links to Show with Attribute Selectors
+
+a[href^="http"]:empty::before {
+    content: attr(href);
+}
+
+
+// 13. Style “Default” Links
+
+a[href]:not([class]) {
+    color: #999;
+    text-decoration: none;
+    transition: all ease-in-out .3s;
+}
+
+// 14. Intrinsic Ratio Boxes
+
+// Using 20% for padding makes the height of the box equal to 20% of its width.
+// No matter the width of the viewport,
+// the child div will keep its aspect ratio (100% / 20% = 5:1).
+.container {
+    height: 0;
+    padding-bottom: 20%;
+    position: relative;
+
+    div {
+        border: 2px dashed #ddd;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+// 15. Style Broken Images
+
+img {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  height: auto;
+  line-height: 2;
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+  &::before {
+    content: "We're sorry, the image below is missing :(";
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  &::after {
+    content: "(url: " attr(src) ")";
+    display: block;
+    font-size: 12px;
+  }
+}
+
+// 16. Use `rem` for Global Sizing; Use `em` for Local Sizing (combine with Step #18)
+
+html {
+  font-size: 16px;
+}
+article {
+  font-size: 1.25rem;
+}
+aside {
+  font-size: .9rem;
+}
+h2 {
+  font-size: 2em;
+}
+p {
+  font-size: 1em;
+}
+
+// 17. Hide Autoplay Videos That Aren’t Muted
+
+video[autoplay]:not([muted]) {
+  display: none;
+}
+
+// 18. Use :root for Flexible Type
+
+:root {
+  font-size: calc(1vw + 1vh + .5vmin);
+}
+body {
+  font: 1rem/1.6 sans-serif;
+}
+
+// 19. Set `font-size` on Form Elements for a Better Mobile Experience
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  font-size: 16px;
+}
